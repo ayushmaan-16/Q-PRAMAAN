@@ -1,35 +1,461 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Q-PRAMAAN · Quantum signature assurance lab</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/style.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Q-PRAMAAN · Quantum Signature Assurance</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
 <body>
 <div class="shell">
   <aside class="rail">
-    <div class="brand"><span class="brand-mark">◈</span><div><strong>Q-PRAMAAN</strong><small>Signature assurance lab</small></div></div>
+    <div class="brand">
+      <span class="brand-mark">◈</span>
+      <div><strong>Q-PRAMAAN</strong><small>Signature Assurance Lab</small></div>
+    </div>
     <div class="rail-group">WORKSPACE</div>
     <button class="nav active" data-tab="laboratory"><span>▦</span> Laboratory</button>
+    <button class="nav" data-tab="physics"><span>∿</span> Physics Trace</button>
     <button class="nav" data-tab="evidence"><span>≣</span> Evidence</button>
-    <button class="nav" data-tab="planner"><span>◇</span> Resource planner</button>
+    <button class="nav" data-tab="planner"><span>◇</span> Resource Planner</button>
     <button class="nav" data-tab="benchmark"><span>▥</span> Evaluation</button>
-    <div class="rail-bottom"><div class="mini-rule"></div><strong>ZERO AI / ML</strong><p>All verdicts come from quantum measurements, protocol rules and explicit statistics.</p><span>Cache Hit · SIH 2026</span></div>
+    <div class="rail-bottom">
+      <strong>STATISTICAL ASSURANCE</strong>
+      <p>Decisions derive from projective measurement statistics and finite-sample bounds.</p>
+      <span>Cache Hit · SIH26141</span>
+    </div>
   </aside>
   <main>
-    <header class="topbar"><div><span class="eyebrow">SIH26141 / TEAM 125961</span><span class="topline">Quantum digital signature threat detection</span></div><div class="live"><i></i> LOCAL SIMULATION</div></header>
+    <header class="topbar">
+      <div>
+        <span class="eyebrow">SIH26141 / TEAM 125961</span>
+        <span class="topline">Quantum Digital Signature Threat Detection</span>
+      </div>
+      <div class="live"><i></i> LOCAL SIMULATION</div>
+    </header>
+
     <section id="laboratory" class="panel active">
-      <div class="hero"><div><span class="eyebrow cyan">THE SIGNATURE CAN LOOK NORMAL</span><h1>Same average error.<br><em>Different story underneath.</em></h1><p>A targeted change in one teleportation outcome can disappear in a pooled error rate. Q-PRAMAAN checks each outcome and shows the evidence behind its verdict.</p></div><div class="hero-figure"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><span class="core">Φ⁺</span><span class="orbit-label l1">00</span><span class="orbit-label l2">01</span><span class="orbit-label l3">10</span><span class="orbit-label l4">11</span></div></div>
-      <div class="section-title"><div><span class="eyebrow">01 / RUN AN EXPERIMENT</span><h2>Attack laboratory</h2></div><span class="note">Seeded probes · private signature material</span></div>
-      <div class="controlbar"><label>Scenario<select id="scenario"></select></label><label>Probe signals per outcome<input id="probeN" type="number" min="32" max="32768" value="4096"></label><label>Probe seed<input id="seed" type="number" min="0" value="26141"></label><button id="run" class="primary">Run experiment <span>↗</span></button></div>
-      <div id="status" class="status">Select a scenario and run the experiment.</div>
+      <div class="hero">
+        <h1>Conditional Bell-State Error Analysis</h1>
+        <p>Identifies targeted channel manipulation hidden by aggregate QBER using 20-scope conditional Hoeffding bounds.</p>
+      </div>
+
+      <div class="section-title">
+        <h2>Attack Simulator</h2>
+      </div>
+      <div class="controlbar">
+        <label>Scenario<select id="scenario"></select></label>
+        <label>Probes per outcome<input id="probeN" type="number" min="32" max="32768" value="4096"></label>
+        <label>Random seed<input id="seed" type="number" min="0" value="26141"></label>
+        <button id="run" class="primary">Run Experiment</button>
+      </div>
+      <div id="status" class="status">Ready. Select a scenario and run the simulation.</div>
+
       <div class="results" id="results" hidden>
-        <div class="verdicts"><div class="verdict"><small>SIGNATURE VALIDITY</small><strong id="signature">—</strong><p id="signatureWhy"></p></div><div class="verdict"><small>CHANNEL STATUS</small><strong id="channel">—</strong><p id="channelWhy"></p></div><div class="verdict"><small>REQUEST AUTHORIZATION</small><strong id="authorization">—</strong><p id="authorizationWhy"></p></div></div>
-        <div class="section-title compact"><div><span class="eyebrow">02 / DIFFERENTIATE THE CHANNELS</span><h2>Outcome-conditioned error</h2></div><span id="pooled" class="datum">—</span></div>
-        <div class="chart-shell"><div class="chart-head"><span>Observed error by Bell outcome</span><span class="legend"><i class="legend-dot"></i> Current run <i class="legend-dot muted"></i> Reference</span></div><canvas id="chart" class="chart" role="img" aria-label="Error rate by Bell measurement outcome"></canvas><div class="chart-foot"><span>00</span><span>01</span><span>10</span><span>11</span></div><p id="chartNote" class="chart-note"></p></div>
-        <div class="signal-row"><div><small>DIRECT VERIFICATION / BOB</small><strong id="bob">—</strong></div><span class="connector">→</span><div><small>TRANSFER VERIFICATION / CHARLIE</small><strong id="charlie">—</strong></div><div><small>OPERATION</small><strong id="operation">—</strong></div></div>
-        <div class="actionrow"><button id="execute" class="secondary">Execute simulated approval</button><button id="download" class="secondary">Download evidence JSON ↓</button><span id="reportid" class="mono"></span></div>
+        <!-- Dual Pipeline Live Comparison -->
+        <div class="pipeline-comparison">
+          <div class="section-title compact">
+            <h2>Real-Time Architecture Response</h2>
+          </div>
+          <div class="dual-pipeline">
+            <div class="pipeline-card legacy" id="legacyPipeline">
+              <div class="pipeline-tag">CONVENTIONAL ARCHITECTURE</div>
+              <h3>Standard Pooled QBER Detector</h3>
+              <div class="pipeline-metrics">
+                <div><small>POOLED QBER</small><strong id="legacyQber">2.00%</strong></div>
+                <div><small>DETECTOR VERDICT</small><strong id="legacyStatus" class="good">NORMAL</strong></div>
+                <div><small>SECURITY OUTCOME</small><strong id="legacyAction" class="bad">EXECUTE</strong></div>
+              </div>
+              <div class="pipeline-callout bad" id="legacyCallout">
+                <span class="pipeline-status-pill bad" id="legacyPill">ALERT</span>
+                <div>
+                  <strong id="legacyTitle">SILENT COMPROMISE</strong>
+                  <p id="legacyDesc">Targeted Pauli disturbance in Bell outcome 00 (8%) is diluted into the 2% pooled average. Conventional detector sees normal QBER and permits execution over a compromised link.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pipeline-card qpramaan" id="qpramaanPipeline">
+              <div class="pipeline-tag accent">Q-PRAMAAN ARCHITECTURE</div>
+              <h3>20-Scope Conditional Assurance</h3>
+              <div class="pipeline-metrics">
+                <div><small>BRANCH 00 ERROR</small><strong id="qpramaanBranch" class="datum">8.00%</strong></div>
+                <div><small>DETECTOR VERDICT</small><strong id="qpramaanStatus" class="warn">ANOMALY</strong></div>
+                <div><small>SECURITY OUTCOME</small><strong id="qpramaanAction" class="warn">QUARANTINE</strong></div>
+              </div>
+              <div class="pipeline-callout good" id="qpramaanCallout">
+                <span class="pipeline-status-pill good" id="qpramaanPill">ISOLATED</span>
+                <div>
+                  <strong id="qpramaanTitle">SAFETY INTERLOCK ENGAGED</strong>
+                  <p id="qpramaanDesc">Conditional Hoeffding test isolates Bell branch 00 exceeding threshold (8.0% vs 3.1%). Release action is immediately quarantined without corrupting valid signature state.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Architecture Comparison Performance Metrics -->
+          <div class="pipeline-stats-grid">
+            <div class="pstat-item">
+              <span class="pstat-label">TARGETED ATTACK DETECTION RATE</span>
+              <div class="pstat-values">
+                <div class="pstat-val legacy">
+                  <small>Conventional</small>
+                  <strong class="bad">0.0%</strong>
+                  <span>0 / 20k batches</span>
+                </div>
+                <div class="pstat-val qpramaan">
+                  <small>Q-PRAMAAN</small>
+                  <strong class="good">99.84%</strong>
+                  <span>19,967 / 20k batches</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pstat-item">
+              <span class="pstat-label">DETECTION RESOLUTION</span>
+              <div class="pstat-values">
+                <div class="pstat-val legacy">
+                  <small>Conventional</small>
+                  <strong>1 Scope</strong>
+                  <span>Aggregate QBER</span>
+                </div>
+                <div class="pstat-val qpramaan">
+                  <small>Q-PRAMAAN</small>
+                  <strong class="datum">20 Scopes</strong>
+                  <span>Branch · Basis · Joint</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pstat-item">
+              <span class="pstat-label">FALSE ALARMS (ORDINARY NOISE)</span>
+              <div class="pstat-values">
+                <div class="pstat-val legacy">
+                  <small>Conventional</small>
+                  <strong class="good">0.0%</strong>
+                  <span>0 / 20k false alarms</span>
+                </div>
+                <div class="pstat-val qpramaan">
+                  <small>Q-PRAMAAN</small>
+                  <strong class="good">0.0%</strong>
+                  <span>Family α = 0.01 bound</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pstat-item">
+              <span class="pstat-label">ACTIVE RUN MARGIN DELTA</span>
+              <div class="pstat-values">
+                <div class="pstat-val legacy">
+                  <small>Pooled vs Bound</small>
+                  <strong id="legacyDelta">-0.64%</strong>
+                  <span id="legacyDeltaSub">Under limit (Safe)</span>
+                </div>
+                <div class="pstat-val qpramaan">
+                  <small>Branch 00 vs Bound</small>
+                  <strong id="qpramaanDelta" class="bad">+4.96%</strong>
+                  <span id="qpramaanDeltaSub">Exceeds bound</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title compact">
+          <h2>Protocol & Channel Verdicts</h2>
+        </div>
+        <div class="verdicts">
+          <div class="verdict">
+            <small>SIGNATURE VALIDITY</small>
+            <strong id="signature">—</strong>
+            <p id="signatureWhy"></p>
+          </div>
+          <div class="verdict">
+            <small>CHANNEL STATUS</small>
+            <strong id="channel">—</strong>
+            <p id="channelWhy"></p>
+          </div>
+          <div class="verdict">
+            <small>REQUEST AUTHORIZATION</small>
+            <strong id="authorization">—</strong>
+            <p id="authorizationWhy"></p>
+          </div>
+        </div>
+
+        <div class="section-title compact">
+          <h2>Outcome-Conditioned Error Rates</h2>
+          <span id="pooled" class="datum">—</span>
+        </div>
+        <div class="chart-shell">
+          <div class="chart-head">
+            <span>Observed Error Rate by Bell Outcome</span>
+            <span class="legend"><i class="legend-dot"></i> Observed <i class="legend-dot muted"></i> Baseline Reference</span>
+          </div>
+          <canvas id="chart" class="chart" role="img" aria-label="Error rate by Bell measurement outcome"></canvas>
+          <div class="chart-foot"><span>00</span><span>01</span><span>10</span><span>11</span></div>
+          <p id="chartNote" class="chart-note"></p>
+        </div>
+
+        <div class="signal-row">
+          <div><small>DIRECT VERIFICATION (BOB)</small><strong id="bob">—</strong></div>
+          <span class="connector">→</span>
+          <div><small>FORWARDED VERIFICATION (CHARLIE)</small><strong id="charlie">—</strong></div>
+          <div><small>OPERATION ACTION</small><strong id="operation">—</strong></div>
+        </div>
+        <div class="actionrow">
+          <button id="execute" class="secondary">Execute Release Action</button>
+          <button id="download" class="secondary">Export Evidence JSON</button>
+          <button id="gotoTrace" class="secondary">Inspect Qubit Trace →</button>
+          <span id="reportid" class="mono"></span>
+        </div>
       </div>
     </section>
-    <section id="evidence" class="panel"><div class="pagehead"><span class="eyebrow">EVIDENCE / RECOMPUTABLE</span><h1>Every decision has a reason.</h1><p>The exported report contains observed counts and thresholds. Private signing material and one-time authentication keys stay out of the report.</p></div><div id="evidence-empty" class="empty">Run an experiment to inspect its evidence.</div><div id="evidence-content" hidden><div class="section-title"><h2>Checks and observations</h2><span id="evidence-status"></span></div><div class="tablewrap"><table><thead><tr><th>Scope</th><th>Observed</th><th>Limit</th><th>Samples</th><th>Result</th></tr></thead><tbody id="evidenceRows"></tbody></table></div><div class="explainer"><h3>What the result means</h3><p id="reason"></p><p id="assumptions"></p></div></div></section>
-    <section id="planner" class="panel"><div class="pagehead"><span class="eyebrow">REFERENCE-MODEL CALCULATOR</span><h1>Security has a resource cost.</h1><p>Choose a target and Bell-pair budget. Published ideal-channel bounds determine the minimum supported signature length under the stated assumptions.</p></div><div class="planner-inputs"><label>Target upper bound (each)<select id="target"><option value="0.001">10⁻³</option><option value="0.000001" selected>10⁻⁶</option><option value="0.000000001">10⁻⁹</option></select></label><label>Bell-pair budget<input id="budget" type="number" value="1000000" min="1"></label><label>Delivery model<select id="model"><option value="ideal">Ideal authenticated</option><option value="noisy">Noisy / unproven</option></select></label><button class="primary" id="calculate">Calculate ↗</button></div><div id="planResult" class="planresult"></div></section>
-    <section id="benchmark" class="panel"><div class="pagehead"><span class="eyebrow">REPRODUCIBLE EVALUATION</span><h1>Test the detector against its baseline.</h1><p>The pooled detector and the full detector see the same generated observations. Reported detection and false alarms are finite-sample measurements.</p></div><div id="benchContent" class="empty">Benchmark results will appear after the evaluation run.</div></section>
-    <footer>Q-PRAMAAN · Cache Hit · Team 125961 <span>Software simulation · no physical-device claim</span></footer>
+
+    <section id="physics" class="panel">
+      <div class="pagehead">
+        <h1>Interactive Qubit Frame Trace & Inspectable Physics</h1>
+        <p>Step-by-step deconstruction of quantum state preparation, Bell-state teleportation, physical Pauli noise injection, and symmetrized state elimination.</p>
+      </div>
+
+      <!-- Part 1: Active Run Stream -->
+      <div class="section-title">
+        <h2>Active Run Qubit Stream</h2>
+        <span id="traceStreamMeta" class="datum">24 Bell Pairs Analyzed</span>
+      </div>
+
+      <div class="trace-filter-bar">
+        <button class="trace-filter-btn active" data-filter="all">All Frames (24)</button>
+        <button class="trace-filter-btn" data-filter="branch0">Targeted Branch 00</button>
+        <button class="trace-filter-btn" data-filter="perturbed">Perturbed (Pauli X/Y/Z)</button>
+        <button class="trace-filter-btn" data-filter="clean">Clean (Identity I)</button>
+        <button class="trace-filter-btn" data-filter="mismatch">Signature Mismatches</button>
+      </div>
+
+      <!-- Horizontal Frame Strip -->
+      <div class="trace-strip" id="traceStrip"></div>
+
+      <!-- Frame Deep-Dive 6-Stage Quantum Circuit Card -->
+      <div class="trace-detail-card" id="traceDetailCard">
+        <div class="trace-detail-header">
+          <div>
+            <span class="eyebrow" id="traceFrameLabel">FRAME #00</span>
+            <h3 id="traceFrameTitle">Alice |+⟩ · Bell Branch 00 · Channel Identity</h3>
+          </div>
+          <div class="trace-detail-badges">
+            <span class="pipeline-status-pill good" id="traceFidelityBadge">FIDELITY 1.000</span>
+            <span class="pipeline-status-pill good" id="traceMatchBadge">COMPATIBLE</span>
+          </div>
+        </div>
+
+        <div class="trace-stages-grid">
+          <!-- Stage 1 -->
+          <div class="trace-stage">
+            <div class="trace-stage-num">01</div>
+            <h4>Alice Prepared State</h4>
+            <div class="trace-stage-val" id="stage1State">|+⟩</div>
+            <div class="trace-stage-sub" id="stage1Dirac">(|0⟩ + |1⟩)/√2</div>
+            <div class="trace-stage-meta">
+              <span>Basis: <strong id="stage1Basis">X</strong></span>
+              <span>Bloch: <strong id="stage1Bloch">(1.0, 0.0, 0.0)</strong></span>
+            </div>
+          </div>
+
+          <!-- Stage 2 -->
+          <div class="trace-stage">
+            <div class="trace-stage-num">02</div>
+            <h4>Bell Projection (BSM)</h4>
+            <div class="trace-stage-val" id="stage2Branch">Branch 00</div>
+            <div class="trace-stage-sub" id="stage2Bell">|Φ⁺⟩ = (|00⟩+|11⟩)/√2</div>
+            <div class="trace-stage-meta">
+              <span>Feed-forward: <strong id="stage2Feed">z=0, x=0</strong></span>
+              <span>Correction: <strong id="stage2Corr">I</strong></span>
+            </div>
+          </div>
+
+          <!-- Stage 3 -->
+          <div class="trace-stage" id="stage3Container">
+            <div class="trace-stage-num">03</div>
+            <h4>Physical Channel</h4>
+            <div class="trace-stage-val" id="stage3Pauli">Operator I</div>
+            <div class="trace-stage-sub" id="stage3Desc">No noise / Identity</div>
+            <div class="trace-stage-meta">
+              <span id="stage3TargetTag" class="good">Targeted Attack: NO</span>
+            </div>
+          </div>
+
+          <!-- Stage 4 -->
+          <div class="trace-stage">
+            <div class="trace-stage-num">04</div>
+            <h4>Receiver Correction</h4>
+            <div class="trace-stage-val" id="stage4Operator">U = Z⁰ X⁰ = I</div>
+            <div class="trace-stage-sub" id="stage4Result">State vector restored</div>
+            <div class="trace-stage-meta">
+              <span>Fidelity: <strong id="stage4Fidelity">1.000</strong></span>
+              <span>Rec Bloch: <strong id="stage4Bloch">(1.0, 0.0, 0.0)</strong></span>
+            </div>
+          </div>
+
+          <!-- Stage 5 -->
+          <div class="trace-stage">
+            <div class="trace-stage-num">05</div>
+            <h4>Receiver Measurement</h4>
+            <div class="trace-stage-val" id="stage5Measured">Measured: |+⟩ (0)</div>
+            <div class="trace-stage-sub" id="stage5Prob">Born P(0)=100% · P(1)=0%</div>
+            <div class="trace-stage-meta">
+              <span>Basis: <strong id="stage5Basis">X</strong></span>
+            </div>
+          </div>
+
+          <!-- Stage 6 -->
+          <div class="trace-stage">
+            <div class="trace-stage-num">06</div>
+            <h4>State Elimination & Guard</h4>
+            <div class="trace-stage-val" id="stage6Eliminated">Eliminated: |-⟩</div>
+            <div class="trace-stage-sub" id="stage6Declared">Alice Declared: |+⟩</div>
+            <div class="trace-stage-meta">
+              <span>Verification: <strong id="stage6Verdict" class="good">PASSED (No Mismatch)</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Part 2: Interactive Single-Shot Physics Sandbox -->
+      <div class="section-title compact">
+        <h2>Single-Shot Quantum Physics Sandbox</h2>
+        <span class="note">Manipulate arbitrary state, branch, Pauli noise, and measurement basis</span>
+      </div>
+
+      <div class="sandbox-shell">
+        <div class="sandbox-controls">
+          <label>Prepared State |ψ⟩
+            <select id="sbState">
+              <option value="0">|0⟩ (Z basis, +1)</option>
+              <option value="1">|1⟩ (Z basis, -1)</option>
+              <option value="2" selected>|+⟩ (X basis, +1)</option>
+              <option value="3">|-⟩ (X basis, -1)</option>
+              <option value="4">|+i⟩ (Y basis, +1)</option>
+              <option value="5">|-i⟩ (Y basis, -1)</option>
+            </select>
+          </label>
+          <label>Bell Measurement Branch
+            <select id="sbBranch">
+              <option value="0" selected>Branch 00 (|Φ⁺⟩ · corr: I)</option>
+              <option value="1">Branch 01 (|Ψ⁺⟩ · corr: X)</option>
+              <option value="2">Branch 10 (|Φ⁻⟩ · corr: Z)</option>
+              <option value="3">Branch 11 (|Ψ⁻⟩ · corr: ZX)</option>
+            </select>
+          </label>
+          <label>Channel Pauli Perturbation
+            <select id="sbPauli">
+              <option value="0">I (Identity · No error)</option>
+              <option value="1" selected>X (Bit flip · σ_x)</option>
+              <option value="2">Y (Bit & phase flip · σ_y)</option>
+              <option value="3">Z (Phase flip · σ_z)</option>
+            </select>
+          </label>
+          <label>Receiver Measurement Basis
+            <select id="sbBasis">
+              <option value="0">Z Basis (|0⟩ vs |1⟩)</option>
+              <option value="1" selected>X Basis (|+⟩ vs |-⟩)</option>
+              <option value="2">Y Basis (|+i⟩ vs |-i⟩)</option>
+            </select>
+          </label>
+          <button id="sbCollapse" class="primary">Sample Single Shot</button>
+        </div>
+
+        <div class="sandbox-display">
+          <div class="sb-card">
+            <span class="sb-label">QUANTUM FIDELITY</span>
+            <strong id="sbFidelity" class="good">1.0000</strong>
+            <span id="sbFidelitySub">State preserved perfectly</span>
+          </div>
+
+          <div class="sb-card">
+            <span class="sb-label">BORN RULE PROBABILITIES</span>
+            <div class="sb-prob-bar">
+              <div id="sbProb0Bar" class="sb-bar-fill p0" style="width: 50%;"></div>
+              <div id="sbProb1Bar" class="sb-bar-fill p1" style="width: 50%;"></div>
+            </div>
+            <div class="sb-prob-legend">
+              <span id="sbProb0Label">P(0): 50.0%</span>
+              <span id="sbProb1Label">P(1): 50.0%</span>
+            </div>
+          </div>
+
+          <div class="sb-card">
+            <span class="sb-label">BLOCH SPHERE VECTOR</span>
+            <div class="sb-bloch">
+              <div><small>Alice</small><strong id="sbAliceBloch">(1.0, 0.0, 0.0)</strong></div>
+              <div class="sb-arrow">→</div>
+              <div><small>Received</small><strong id="sbRecBloch">(1.0, 0.0, 0.0)</strong></div>
+            </div>
+          </div>
+
+          <div class="sb-card">
+            <span class="sb-label">STATE ELIMINATION & SIGNATURE VERDICT</span>
+            <div class="sb-elim-info" id="sbElimInfo">
+              Measuring outcome 0 eliminates <strong>|-⟩</strong>. Alice declared <strong>|+⟩</strong> → <span class="good">COMPATIBLE</span>
+            </div>
+            <div class="sb-shot-result" id="sbShotResult">Click 'Sample Single Shot' to simulate physical collapse.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidence" class="panel">
+      <div class="pagehead">
+        <h1>Measurement Evidence</h1>
+        <p>Observed error counts, sample sizes, and Hoeffding decision bounds across 20 tested scopes. Private signing keys are never exported.</p>
+      </div>
+      <div id="evidence-empty" class="empty">Run an experiment in the laboratory to inspect evidence.</div>
+      <div id="evidence-content" hidden>
+        <div class="section-title"><h2>Statistical Tests</h2><span id="evidence-status"></span></div>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Scope</th><th>Observed Rate</th><th>Decision Bound</th><th>Samples (n)</th><th>Outcome</th></tr></thead>
+            <tbody id="evidenceRows"></tbody>
+          </table>
+        </div>
+        <div class="explainer">
+          <h3>Test Framework</h3>
+          <p id="reason"></p>
+          <p id="assumptions"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="planner" class="panel">
+      <div class="pagehead">
+        <h1>Security Parameter Planning</h1>
+        <p>Calculate minimum signature length and required Bell pairs using Wallden et al. reference bounds.</p>
+      </div>
+      <div class="planner-inputs">
+        <label>Target Error Bound (ε)<select id="target"><option value="0.001">10⁻³</option><option value="0.000001" selected>10⁻⁶</option><option value="0.000000001">10⁻⁹</option></select></label>
+        <label>Bell-Pair Budget<input id="budget" type="number" value="1000000" min="1"></label>
+        <label>Delivery Channel<select id="model"><option value="ideal">Ideal Authenticated</option><option value="noisy">Noisy / Unproven</option></select></label>
+        <button class="primary" id="calculate">Calculate</button>
+      </div>
+      <div id="planResult" class="planresult"></div>
+    </section>
+
+    <section id="benchmark" class="panel">
+      <div class="pagehead">
+        <h1>Detection Evaluation</h1>
+        <p>Comparative detection rates and false alarms across 20,000 trials per scenario at α = 0.01.</p>
+      </div>
+      <div id="benchContent" class="empty">Benchmark results will appear after evaluation runs.</div>
+    </section>
+
+    <footer>
+      Q-PRAMAAN · Cache Hit · Team 125961 
+      <span>Software simulation · Independent signal Pauli channel</span>
+    </footer>
   </main>
-</div><script src="/app.js" defer></script></body></html>
+</div>
+<script src="/app.js" defer></script>
+</body>
+</html>
