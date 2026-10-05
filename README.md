@@ -5,6 +5,8 @@
 
 Q-PRAMAAN is a local software laboratory and assurance prototype for teleportation-based Quantum Digital Signature (QDS) security. It models a three-party signature workflow inspired by the Wallden et al. P1′ protocol, introduces a multi-verdict decision framework, and demonstrates why conventional pooled error metrics fail against targeted quantum channel manipulation—**operating entirely on quantum mechanics, projective measurement statistics, and finite-sample probability bounds without relying on AI, neural networks, or machine learning.**
 
+**SIH presentation:** [Open the refined six-slide PowerPoint](submission/Cache_Hit_Q_PRAMAAN_SIH26141_Refined_v2.pptx). It uses editable diagrams and charts to explain the problem, workflow, measured results, and limits.
+
 ---
 
 ## 1. Problem
@@ -393,4 +395,3 @@ Once running, navigate to **`http://127.0.0.1:8765`** in your browser.
 2. **Gottesman & Chuang (2001)**: *Quantum Digital Signatures*. [arXiv:quant-ph/0105032](https://arxiv.org/abs/quant-ph/0105032).
 3. **Nadeem & Wang (2015)**: *Quantum digital signature scheme with quantum teleportation*. [arXiv:1507.03581](https://arxiv.org/abs/1507.03581).
 4. **IBM Quantum Learning**: *Quantum Teleportation & Correction Circuits*. [IBM Quantum Learning](https://quantum.cloud.ibm.com/learning/en/courses/basics-of-quantum-information/entanglement-in-action/quantum-teleportation).
-
