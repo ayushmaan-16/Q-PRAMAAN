@@ -1,0 +1,576 @@
+{
+  "version": "1.0.0",
+  "seed": 26141,
+  "alpha": 0.01,
+  "per_branch": 2048,
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "channel_results": [
+    {
+      "scenario": "ordinary",
+      "expected_pooled_error": 0.02000000000000001,
+      "trials": 20000,
+      "pooled": {
+        "flagged": 0,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.00019203605610462553
+        ]
+      },
+      "full": {
+        "flagged": 0,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.00019203605610462553
+        ]
+      }
+    },
+    {
+      "scenario": "targeted",
+      "expected_pooled_error": 0.019999999999999997,
+      "trials": 20000,
+      "pooled": {
+        "flagged": 0,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.00019203605610462553
+        ]
+      },
+      "full": {
+        "flagged": 19967,
+        "rate": 0.99835,
+        "wilson_95": [
+          0.9976837768002499,
+          0.9988248208626306
+        ]
+      }
+    },
+    {
+      "scenario": "benign_drift",
+      "expected_pooled_error": 0.07999999999999999,
+      "trials": 20000,
+      "pooled": {
+        "flagged": 20000,
+        "rate": 1.0,
+        "wilson_95": [
+          0.9998079639438954,
+          0.9999999999999999
+        ]
+      },
+      "full": {
+        "flagged": 20000,
+        "rate": 1.0,
+        "wilson_95": [
+          0.9998079639438954,
+          0.9999999999999999
+        ]
+      }
+    },
+    {
+      "scenario": "sparse",
+      "expected_pooled_error": 0.021500000000000012,
+      "trials": 20000,
+      "pooled": {
+        "flagged": 0,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.00019203605610462553
+        ]
+      },
+      "full": {
+        "flagged": 0,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.00019203605610462553
+        ]
+      }
+    },
+    {
+      "scenario": "indistinguishable",
+      "expected_pooled_error": 0.02000000000000001,
+      "trials": 20000,
+      "pooled": {
+        "flagged": 0,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.00019203605610462553
+        ]
+      },
+      "full": {
+        "flagged": 0,
+        "rate": 0.0,
+        "wilson_95": [
+          0.0,
+          0.00019203605610462553
+        ]
+      }
+    },
+    {
+      "scenario": "intercept_resend",
+      "expected_pooled_error": 0.34,
+      "trials": 20000,
+      "pooled": {
+        "flagged": 20000,
+        "rate": 1.0,
+        "wilson_95": [
+          0.9998079639438954,
+          0.9999999999999999
+        ]
+      },
+      "full": {
+        "flagged": 20000,
+        "rate": 1.0,
+        "wilson_95": [
+          0.9998079639438954,
+          0.9999999999999999
+        ]
+      }
+    }
+  ],
+  "reference_four_branch": {
+    "kind": "Four-branch-only feasibility experiment; distinct from the 20-test production family",
+    "ordinary_flags": 0,
+    "targeted_flags": 19998,
+    "trials": 20000
+  },
+  "protocol_results": {
+    "honest_accept": {
+      "count": 200,
+      "trials": 200,
+      "wilson_95": [
+        0.9811546736227335,
+        1.0
+      ]
+    },
+    "forge_accept": {
+      "count": 0,
+      "trials": 200,
+      "wilson_95": [
+        1.734723475976807e-18,
+        0.018845326377266575
+      ]
+    },
+    "repudiation_success": {
+      "count": 0,
+      "trials": 200,
+      "wilson_95": [
+        1.734723475976807e-18,
+        0.018845326377266575
+      ]
+    },
+    "setup_abort": {
+      "count": 0,
+      "trials": 200,
+      "wilson_95": [
+        1.734723475976807e-18,
+        0.018845326377266575
+      ]
+    }
+  },
+  "timing": [
+    {
+      "length": 1024,
+      "median_ms": 0.6816000095568597,
+      "scope": "distribution + one verification, no HTTP/MAC"
+    },
+    {
+      "length": 4096,
+      "median_ms": 1.674500002991408,
+      "scope": "distribution + one verification, no HTTP/MAC"
+    },
+    {
+      "length": 16384,
+      "median_ms": 5.841800011694431,
+      "scope": "distribution + one verification, no HTTP/MAC"
+    },
+    {
+      "length": 65536,
+      "median_ms": 24.02429998619482,
+      "scope": "distribution + one verification, no HTTP/MAC"
+    }
+  ],
+  "correctness": {
+    "checks": [
+      {
+        "state": "0",
+        "branch": "00",
+        "fidelity": 1.0,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "0",
+        "branch": "01",
+        "fidelity": 1.0,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "0",
+        "branch": "10",
+        "fidelity": 1.0,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "0",
+        "branch": "11",
+        "fidelity": 1.0,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "1",
+        "branch": "00",
+        "fidelity": 1.0,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "1",
+        "branch": "01",
+        "fidelity": 1.0,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "1",
+        "branch": "10",
+        "fidelity": 1.0,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "1",
+        "branch": "11",
+        "fidelity": 1.0,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "+",
+        "branch": "00",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "+",
+        "branch": "01",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "+",
+        "branch": "10",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "+",
+        "branch": "11",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "-",
+        "branch": "00",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "-",
+        "branch": "01",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "-",
+        "branch": "10",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "-",
+        "branch": "11",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "+i",
+        "branch": "00",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "+i",
+        "branch": "01",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "+i",
+        "branch": "10",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "+i",
+        "branch": "11",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "-i",
+        "branch": "00",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "-i",
+        "branch": "01",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "-i",
+        "branch": "10",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      },
+      {
+        "state": "-i",
+        "branch": "11",
+        "fidelity": 0.9999999999999996,
+        "branch_probability": 0.2499999999999999
+      }
+    ],
+    "count": 24,
+    "minimum_fidelity": 0.9999999999999996,
+    "maximum_branch_probability_error": 1.1102230246251565e-16
+  },
+  "planner": {
+    "target_per_bound": 1e-06,
+    "budget_bell_pairs": 1000000,
+    "assumptions": [
+      "Ideal authenticated quantum delivery (teleportation treated as an identity channel)",
+      "Authenticated classical channels; secret Bob-Charlie exchange",
+      "Uniform independent BB84 signing material; bounded recipient copies",
+      "One-time signing, uncompromised devices, three parties, original threshold normalization",
+      "Reference bounds are not a composable security proof for the modified noisy implementation"
+    ],
+    "source": "https://arxiv.org/pdf/1403.5551",
+    "source_equations": "(2), (3); exchange abort uses Hoeffding and a four-exchange union bound",
+    "claim": "Conditional reference estimates, not measured attack probabilities or a composable total.",
+    "status": "SUPPORTED",
+    "selected": {
+      "length": 131072,
+      "sa": 0.02,
+      "sv": 0.04,
+      "r": 0.05,
+      "forgery": 1.5614980907621912e-67,
+      "repudiation": 4.123165179774912e-12,
+      "exchange_abort_union": 1.9224644909666718e-284,
+      "bell_pairs": 524288,
+      "teleportation_classical_bits": 1048576,
+      "projective_measurements": 524288,
+      "verification_work": "O(L) per one-bit verification",
+      "authentication_and_probes": "Additional; excluded from these base resource counts"
+    },
+    "frontier": [
+      {
+        "length": 256,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 0.740489041295586,
+        "repudiation": 0.9500886338026269,
+        "exchange_abort_union": 1.0,
+        "bell_pairs": 1024,
+        "teleportation_classical_bits": 2048,
+        "projective_measurements": 1024,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 512,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 0.5483240202788561,
+        "repudiation": 0.9026684120809421,
+        "exchange_abort_union": 0.6184379235463977,
+        "bell_pairs": 2048,
+        "teleportation_classical_bits": 4096,
+        "projective_measurements": 2048,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 1024,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 0.30065923121476734,
+        "repudiation": 0.8148102621687294,
+        "exchange_abort_union": 0.0478081831600475,
+        "bell_pairs": 4096,
+        "teleportation_classical_bits": 8192,
+        "projective_measurements": 4096,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 2048,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 0.09039597331465492,
+        "repudiation": 0.6639157633354735,
+        "exchange_abort_union": 0.00028570279713308115,
+        "bell_pairs": 8192,
+        "teleportation_classical_bits": 16384,
+        "projective_measurements": 8192,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 4096,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 0.008171431991503804,
+        "repudiation": 0.4407841408053245,
+        "exchange_abort_union": 1.0203261036208317e-08,
+        "bell_pairs": 16384,
+        "teleportation_classical_bits": 32768,
+        "projective_measurements": 16384,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 8192,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 6.677230079177182e-05,
+        "repudiation": 0.19429065878548815,
+        "exchange_abort_union": 1.3013316971625851e-17,
+        "bell_pairs": 32768,
+        "teleportation_classical_bits": 65536,
+        "projective_measurements": 32768,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 16384,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 4.458540153026852e-09,
+        "repudiation": 0.03774886009129898,
+        "exchange_abort_union": 2.1168302325500678e-35,
+        "bell_pairs": 65536,
+        "teleportation_classical_bits": 131072,
+        "projective_measurements": 65536,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 32768,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 1.9878580296152702e-17,
+        "repudiation": 0.0014249764381924648,
+        "exchange_abort_union": 5.601212791797467e-71,
+        "bell_pairs": 131072,
+        "teleportation_classical_bits": 262144,
+        "projective_measurements": 131072,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 65536,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 3.951579545905904e-34,
+        "repudiation": 2.0305578494036836e-06,
+        "exchange_abort_union": 3.921698092374447e-142,
+        "bell_pairs": 262144,
+        "teleportation_classical_bits": 524288,
+        "projective_measurements": 262144,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 131072,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 1.5614980907621912e-67,
+        "repudiation": 4.123165179774912e-12,
+        "exchange_abort_union": 1.9224644909666718e-284,
+        "bell_pairs": 524288,
+        "teleportation_classical_bits": 1048576,
+        "projective_measurements": 524288,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 262144,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 2.4382762874539687e-134,
+        "repudiation": 1.7000491099708284e-23,
+        "exchange_abort_union": 0.0,
+        "bell_pairs": 1048576,
+        "teleportation_classical_bits": 2097152,
+        "projective_measurements": 1048576,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 524288,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 5.945191253960309e-268,
+        "repudiation": 2.8901669763126057e-46,
+        "exchange_abort_union": 0.0,
+        "bell_pairs": 2097152,
+        "teleportation_classical_bits": 4194304,
+        "projective_measurements": 2097152,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      },
+      {
+        "length": 1048576,
+        "sa": 0.02,
+        "sv": 0.04,
+        "r": 0.05,
+        "forgery": 0.0,
+        "repudiation": 8.353065150967951e-92,
+        "exchange_abort_union": 0.0,
+        "bell_pairs": 4194304,
+        "teleportation_classical_bits": 8388608,
+        "projective_measurements": 4194304,
+        "verification_work": "O(L) per one-bit verification",
+        "authentication_and_probes": "Additional; excluded from these base resource counts"
+      }
+    ],
+    "minimum_supported_length": 131072,
+    "search": "Smallest supported power-of-two L from 256 through 1,048,576; thresholds held fixed."
+  },
+  "elapsed_seconds": 1.665,
+  "notes": [
+    "Synthetic independent Pauli channels; fixed balanced branch and basis quotas; known baseline.",
+    "Full detector uses 20 tests with Bonferroni allocation; standalone pooled comparator gets full 1% budget.",
+    "The attacker that reproduces ordinary noise is intentionally undetectable from these measurements.",
+    "Benign drift is a channel-model anomaly, not an identified cyberattack.",
+    "Protocol attack trials use private reproducible laboratory material only; never reuse it to sign live data.",
+    "No successful attack observed is a finite-sample observation, not a universal security proof."
+  ]
+}

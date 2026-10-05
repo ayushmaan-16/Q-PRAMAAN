@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Q-PRAMAAN · Quantum signature assurance lab</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/style.css"></head>
+<body>
+<div class="shell">
+  <aside class="rail">
+    <div class="brand"><span class="brand-mark">◈</span><div><strong>Q-PRAMAAN</strong><small>Signature assurance lab</small></div></div>
+    <div class="rail-group">WORKSPACE</div>
+    <button class="nav active" data-tab="laboratory"><span>▦</span> Laboratory</button>
+    <button class="nav" data-tab="evidence"><span>≣</span> Evidence</button>
+    <button class="nav" data-tab="planner"><span>◇</span> Resource planner</button>
+    <button class="nav" data-tab="benchmark"><span>▥</span> Evaluation</button>
+    <div class="rail-bottom"><div class="mini-rule"></div><strong>ZERO AI / ML</strong><p>All verdicts come from quantum measurements, protocol rules and explicit statistics.</p><span>Cache Hit · SIH 2026</span></div>
+  </aside>
+  <main>
+    <header class="topbar"><div><span class="eyebrow">SIH26141 / TEAM 125961</span><span class="topline">Quantum digital signature threat detection</span></div><div class="live"><i></i> LOCAL SIMULATION</div></header>
+    <section id="laboratory" class="panel active">
+      <div class="hero"><div><span class="eyebrow cyan">THE SIGNATURE CAN LOOK NORMAL</span><h1>Same average error.<br><em>Different story underneath.</em></h1><p>A targeted change in one teleportation outcome can disappear in a pooled error rate. Q-PRAMAAN checks each outcome and shows the evidence behind its verdict.</p></div><div class="hero-figure"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><span class="core">Φ⁺</span><span class="orbit-label l1">00</span><span class="orbit-label l2">01</span><span class="orbit-label l3">10</span><span class="orbit-label l4">11</span></div></div>
+      <div class="section-title"><div><span class="eyebrow">01 / RUN AN EXPERIMENT</span><h2>Attack laboratory</h2></div><span class="note">Seeded probes · private signature material</span></div>
+      <div class="controlbar"><label>Scenario<select id="scenario"></select></label><label>Probe signals per outcome<input id="probeN" type="number" min="32" max="32768" value="4096"></label><label>Probe seed<input id="seed" type="number" min="0" value="26141"></label><button id="run" class="primary">Run experiment <span>↗</span></button></div>
+      <div id="status" class="status">Select a scenario and run the experiment.</div>
+      <div class="results" id="results" hidden>
+        <div class="verdicts"><div class="verdict"><small>SIGNATURE VALIDITY</small><strong id="signature">—</strong><p id="signatureWhy"></p></div><div class="verdict"><small>CHANNEL STATUS</small><strong id="channel">—</strong><p id="channelWhy"></p></div><div class="verdict"><small>REQUEST AUTHORIZATION</small><strong id="authorization">—</strong><p id="authorizationWhy"></p></div></div>
+        <div class="section-title compact"><div><span class="eyebrow">02 / DIFFERENTIATE THE CHANNELS</span><h2>Outcome-conditioned error</h2></div><span id="pooled" class="datum">—</span></div>
+        <div class="chart-shell"><div class="chart-head"><span>Observed error by Bell outcome</span><span class="legend"><i class="legend-dot"></i> Current run <i class="legend-dot muted"></i> Reference</span></div><canvas id="chart" class="chart" role="img" aria-label="Error rate by Bell measurement outcome"></canvas><div class="chart-foot"><span>00</span><span>01</span><span>10</span><span>11</span></div><p id="chartNote" class="chart-note"></p></div>
+        <div class="signal-row"><div><small>DIRECT VERIFICATION / BOB</small><strong id="bob">—</strong></div><span class="connector">→</span><div><small>TRANSFER VERIFICATION / CHARLIE</small><strong id="charlie">—</strong></div><div><small>OPERATION</small><strong id="operation">—</strong></div></div>
+        <div class="actionrow"><button id="execute" class="secondary">Execute simulated approval</button><button id="download" class="secondary">Download evidence JSON ↓</button><span id="reportid" class="mono"></span></div>
+      </div>
+    </section>
+    <section id="evidence" class="panel"><div class="pagehead"><span class="eyebrow">EVIDENCE / RECOMPUTABLE</span><h1>Every decision has a reason.</h1><p>The exported report contains observed counts and thresholds. Private signing material and one-time authentication keys stay out of the report.</p></div><div id="evidence-empty" class="empty">Run an experiment to inspect its evidence.</div><div id="evidence-content" hidden><div class="section-title"><h2>Checks and observations</h2><span id="evidence-status"></span></div><div class="tablewrap"><table><thead><tr><th>Scope</th><th>Observed</th><th>Limit</th><th>Samples</th><th>Result</th></tr></thead><tbody id="evidenceRows"></tbody></table></div><div class="explainer"><h3>What the result means</h3><p id="reason"></p><p id="assumptions"></p></div></div></section>
+    <section id="planner" class="panel"><div class="pagehead"><span class="eyebrow">REFERENCE-MODEL CALCULATOR</span><h1>Security has a resource cost.</h1><p>Choose a target and Bell-pair budget. Published ideal-channel bounds determine the minimum supported signature length under the stated assumptions.</p></div><div class="planner-inputs"><label>Target upper bound (each)<select id="target"><option value="0.001">10⁻³</option><option value="0.000001" selected>10⁻⁶</option><option value="0.000000001">10⁻⁹</option></select></label><label>Bell-pair budget<input id="budget" type="number" value="1000000" min="1"></label><label>Delivery model<select id="model"><option value="ideal">Ideal authenticated</option><option value="noisy">Noisy / unproven</option></select></label><button class="primary" id="calculate">Calculate ↗</button></div><div id="planResult" class="planresult"></div></section>
+    <section id="benchmark" class="panel"><div class="pagehead"><span class="eyebrow">REPRODUCIBLE EVALUATION</span><h1>Test the detector against its baseline.</h1><p>The pooled detector and the full detector see the same generated observations. Reported detection and false alarms are finite-sample measurements.</p></div><div id="benchContent" class="empty">Benchmark results will appear after the evaluation run.</div></section>
+    <footer>Q-PRAMAAN · Cache Hit · Team 125961 <span>Software simulation · no physical-device claim</span></footer>
+  </main>
+</div><script src="/app.js" defer></script></body></html>
