@@ -87,6 +87,30 @@ class CoreTests(unittest.TestCase):
         lost = analyze(probe_batch("loss", 3, 4096, .02))
         self.assertEqual(lost["status"], "INSUFFICIENT_EVIDENCE")
 
+    def test_interactive_qubit_frame_physics_and_state_elimination(self):
+        from qpramaan.trace import simulate_frame, sample_experiment_traces
+        # Clean frame (+ state, branch 00, no noise, X basis) -> 100% fidelity, p0 = 1.0
+        clean = simulate_frame(2, 0, 0, 1)
+        self.assertEqual(clean["alice"]["name"], "+")
+        self.assertEqual(clean["bell"]["label"], "00")
+        self.assertAlmostEqual(clean["receiver"]["fidelity"], 1.0, places=5)
+        self.assertAlmostEqual(clean["measurement"]["p0"], 1.0, places=5)
+        self.assertFalse(clean["measurement"]["mismatch_if_0"])
+
+        # Targeted Pauli-X error on |0⟩ in Z basis -> bit flips to |1⟩, p0 = 0.0, p1 = 1.0, causes mismatch if outcome 1 eliminates |0⟩
+        flipped = simulate_frame(0, 0, 1, 0)
+        self.assertEqual(flipped["alice"]["name"], "0")
+        self.assertAlmostEqual(flipped["measurement"]["p0"], 0.0, places=5)
+        self.assertAlmostEqual(flipped["measurement"]["p1"], 1.0, places=5)
+        self.assertTrue(flipped["measurement"]["mismatch_if_1"])
+
+        # Active sample trace generator contains 24 frames with valid attributes
+        traces = sample_experiment_traces("targeted", 26141, 24, 0.02)
+        self.assertEqual(len(traces), 24)
+        self.assertTrue(all(f["branch"] in (0, 1, 2, 3) for f in traces))
+        self.assertTrue(any(f["is_targeted_attack"] for f in traces))
+
 
 if __name__ == "__main__":
     unittest.main()
+

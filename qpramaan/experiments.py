@@ -9,6 +9,8 @@ from .attacks import SCENARIOS, probe_batch
 from .auth import OneTimeAuthenticator, canonical
 from .detection import analyze
 from .protocol import distribute, verify, bob_forge
+from .trace import sample_experiment_traces
+
 
 
 def operation_decision(signature, channel, authorization):
@@ -111,6 +113,7 @@ def run_experiment(config, store):
               "authorization_reason": auth_reason, "bob": bob, "charlie": charlie,
               "setup": {"completed": material["setup_ok"], "exchange_counts": material["exchange_counts"],
                         "bell_outcome_counts": material["bell_counts"]},
+              "traces": sample_experiment_traces(scenario, seed, 24, baseline),
               "channel_analysis": channel, "baseline_analysis": comparison, "observations": observations,
               "authentication": {**auth.summary(), "private_exchange_otp_bits": confidential_bits},
               "resources": {"signature_elements_per_message": length, "bell_pairs_signature": 4 * length,

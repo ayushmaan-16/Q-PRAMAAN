@@ -12,6 +12,7 @@ from .experiments import run_experiment, execute_report
 from .planner import plan
 from .quantum import correctness
 from .store import Store
+from .trace import simulate_frame
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -59,10 +60,13 @@ def make_handler(store):
                 return self.json_response({"error": "Not found."}, 404)
             data = file.read_bytes()
             self.send_response(200)
-            self.send_header("Content-Type", mimetypes.guess_type(str(file))[0] or "application/octet-stream")
+            mime = mimetypes.guess_type(str(file))[0]
+            if file.suffix == ".woff2":
+                mime = "font/woff2"
+            self.send_header("Content-Type", mime or "application/octet-stream")
             self.send_header("Content-Length", str(len(data)))
             self.send_header("X-Content-Type-Options", "nosniff")
-            self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'")
+            self.send_header("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'")
             self.end_headers()
             self.wfile.write(data)
 
@@ -85,6 +89,13 @@ def make_handler(store):
                                                    str(body.get("model", "ideal"))))
                 if self.path == "/api/execute":
                     return self.json_response(execute_report(str(body.get("id", "")), store))
+                if self.path == "/api/trace":
+                    return self.json_response(simulate_frame(
+                        int(body.get("state", 0)),
+                        int(body.get("branch", 0)),
+                        int(body.get("pauli", 0)),
+                        int(body.get("basis", 0))
+                    ))
                 return self.json_response({"error": "Not found."}, 404)
             except (ValueError, TypeError, OverflowError) as e:
                 return self.json_response({"error": str(e)}, 400)

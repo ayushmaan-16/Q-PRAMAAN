@@ -98,6 +98,73 @@ $$\text{Threshold}(n) = \min\left(1.0,\; q_0 + \sqrt{\frac{\ln(1 / \alpha_{\text
 3. **Secret Symmetrization**: Bob and Charlie privately swap a random half ($\sim 50\%$) of their excluded-state records over an OTP-encrypted classical channel, ensuring neither recipient can forge a forwarded declaration.
 4. **Verification**: Mismatches between declaration and retained excluded states must remain strictly below threshold $s_a L$ (for Bob's direct verification) and $s_v L$ (for Charlie's forwarded verification), with $s_a = 0.02$ and $s_v = 0.04$.
 
+### 3.4 Cross-Pipeline Architecture Comparison (Dual-Pipeline View)
+
+To directly showcase the operational disparity between legacy quantum monitors and Q-PRAMAAN, the dashboard embeds a real-time **Side-by-Side Dual-Pipeline Architecture Comparator** that runs simultaneously on every transmission batch:
+
+```
+┌──────────────────────────────────────────────┬──────────────────────────────────────────────┐
+│           CONVENTIONAL ARCHITECTURE          │            Q-PRAMAAN ARCHITECTURE            │
+│          Standard Pooled QBER Detector       │          20-Scope Conditional Assurance      │
+├──────────────────────────────────────────────┼──────────────────────────────────────────────┤
+│ POOLED QBER        : 2.00%                   │ BRANCH 00 ERROR    : 8.00%                   │
+│ DETECTOR VERDICT   : NORMAL (Pass)           │ DETECTOR VERDICT   : ANOMALY (Tripped)       │
+│ SECURITY OUTCOME   : EXECUTE                 │ SECURITY OUTCOME   : QUARANTINE              │
+│ CALLOUT            : SILENT COMPROMISE       │ CALLOUT            : INTERLOCK ENGAGED       │
+│                      Targeted Pauli noise in │                      Branch 00 isolated      │
+│                      Bell 00 diluted into 2% │                      (8.0% vs 3.1% bound).   │
+│                      average; link breached. │                      Action quarantined.     │
+└──────────────────────────────────────────────┴──────────────────────────────────────────────┘
+```
+
+#### Real-Time Comparative Metrics:
+
+| Comparison Metric | Conventional Pooled Detector | Q-PRAMAAN 20-Scope Assurance | Operational Security Significance |
+|---|:---:|:---:|---|
+| **Targeted Attack Detection Rate** | **0.0%** (0 / 20k batches) | **99.84%** (19,967 / 20k batches) | Pooled detector completely misses localized channel compromise; Q-PRAMAAN catches it reliably. |
+| **Detection Resolution** | **1 Scope** (Aggregate QBER) | **20 Scopes** (Branch $\times$ Basis $\times$ Joint) | Granular partitioning isolates the exact physical Bell outcome and Pauli basis under attack. |
+| **False Alarm Rate (Ordinary Noise)** | **0.0%** (0 / 20k batches) | **0.0%** (Family $\alpha = 0.01$ bound) | Strict Bonferroni family-wise control prevents nuisance tripping under benign thermal noise. |
+| **Active Run Margin Delta** | Negative ($-0.64\%$, Under limit) | Positive ($+4.96\%$, Exceeds bound) | Legacy monitor observes comfortable headroom while Q-PRAMAAN's Hoeffding bound is decisively tripped. |
+
+---
+
+### 3.5 Interactive Qubit Frame Trace (Inspectable Physics)
+
+Rather than treating quantum transmissions as opaque macroscopic statistical aggregates, Q-PRAMAAN provides an **Interactive Qubit Frame Trace & Single-Shot Physics Sandbox** to inspect individual photons (qubits) at the microscopic quantum mechanics level.
+
+```
+[Stage 1: State Prep] ──► [Stage 2: Bell Teleport] ──► [Stage 3: Physical Link]
+                                                                  │
+[Stage 6: Elimination] ◄── [Stage 5: Measurement]  ◄── [Stage 4: Unitary Correct]
+```
+
+#### 1. Active Run Frame Scrubber (24-Frame Stream)
+Every experiment run captures 24 representative physical qubit frames. The dashboard provides an interactive horizontal chip scrubber with instant filtering:
+* `All Frames (24)`: Complete multi-branch sequence.
+* `Targeted Branch 00`: Isolates the specific Bell outcome attacked by the adversary.
+* `Perturbed (Pauli X/Y/Z)`: Filters frames affected by bit-flip, phase-flip, or depolarization noise.
+* `Clean (Identity I)`: Unperturbed baseline frames.
+* `Signature Mismatches`: Directly highlights frames that caused recipient state elimination violations.
+
+#### 2. The 6-Stage Quantum Circuit Breakdown
+Selecting any frame expands an end-to-end mathematical circuit trace:
+1. **Stage 01 · Alice Prepared State**: Displays the initial state vector $|\psi\rangle \in \{|0\rangle, |1\rangle, |+\rangle, |-\rangle, |+i\rangle, |-i\rangle\}$, normalized Dirac notation, chosen basis, and 3D Bloch sphere coordinates:
+   $$r_x = 2\text{Re}(\alpha^* \beta), \quad r_y = 2\text{Im}(\alpha^* \beta), \quad r_z = |\alpha|^2 - |\beta|^2$$
+2. **Stage 02 · Bell State Measurement (BSM)**: Joint projection onto Bell pair $|\Phi^+\rangle = \frac{|00\rangle + |11\rangle}{\sqrt{2}}$, yielding branch outcome $c \in \{00, 01, 10, 11\}$ and classical feed-forward bits $(z = c \gg 1, x = c \ \& \ 1)$.
+3. **Stage 03 · Quantum Physical Link**: Applied channel operator ($I, X, Y, Z$). Under targeted manipulation, frames in Branch `00` flag the injected Pauli perturbation (`Targeted Attack: YES (Branch 00)`).
+4. **Stage 04 · Receiver Unitary Correction**: Bob applies feed-forward operator $U = Z^z X^x$. Computes exact quantum fidelity $F = |\langle\psi_{\text{alice}}|\psi_{\text{received}}\rangle|^2$ and reconstructed Bloch coordinates.
+5. **Stage 05 · Projective Measurement**: Projective collapse in Bob's chosen basis ($Z, X, Y$) with theoretical Born rule probabilities $P(0)$ and $P(1)$ and collapsed outcome bit.
+6. **Stage 06 · State Elimination & Signature Guard**: Sifting logic disqualifies incompatible candidate states ($2B + (1 - m)$). Alice's declared signature key is tested against the eliminated candidate, proving whether channel noise provoked a signature mismatch.
+
+#### 3. Single-Shot Quantum Physics Sandbox
+An interactive laboratory workbench allowing researchers and evaluators to manually manipulate physical parameters:
+* **Tunable Dials**: Alice's input state, Bell branch (`00`, `01`, `10`, `11`), injected Pauli operator ($I, X, Y, Z$), and receiver measurement basis.
+* **Real-Time Visuals**:
+  * **Fidelity Gauge**: Real-time numerical overlap ($F = 1.0000$ vs degraded).
+  * **Born Rule Distribution**: Two-tone dynamic bar displaying exact measurement probabilities $P(0)$ vs $P(1)$.
+  * **Bloch Vector Shift**: Visual displacement from Alice $(x,y,z) \rightarrow$ Transmitted $(x,y,z)$.
+* **"Sample Single Shot"**: Executes a live quantum measurement collapse using Born-weighted sampling to observe whether a single shot passes or trips a signature rejection.
+
 ---
 
 ## 4. Architecture
@@ -152,6 +219,7 @@ Q-PRAMAAN/
 ├── SIH26141.md               # Problem statement specifications
 ├── qpramaan/
 │   ├── quantum.py            # 3-qubit circuit, Bell teleportation, Born probability tensor
+│   ├── trace.py              # Single-qubit frame physics, Bloch coordinates, Born sampling
 │   ├── protocol.py           # P1' QDS: BB84 state elimination, symmetrization, verification
 │   ├── detection.py          # 20-scope Hoeffding detector, Bonferroni union bounds
 │   ├── attacks.py            # 13 simulated attack and channel disturbance scenarios
@@ -163,9 +231,9 @@ Q-PRAMAAN/
 │   ├── evidence.py           # Independent auditor CLI to recompute JSON report arithmetic
 │   └── benchmark.py          # Vectorized benchmark runner for multi-scenario evaluation
 ├── web/                      # Frontend dashboard (Vanilla HTML, CSS, JavaScript)
-│   ├── index.html            # Laboratory, Evidence, Planner, and Benchmark views
-│   ├── style.css             # Dark-mode glassmorphic theme and responsive layouts
-│   └── app.js                # Interactive visualization, REST integration, JSON download
+│   ├── index.html            # Laboratory, Physics Trace, Evidence, Planner, Benchmark views
+│   ├── style.css             # Deep obsidian theme, sharp corners, JetBrains Mono font
+│   └── app.js                # Dual-pipeline analytics, frame scrubber, physics sandbox
 ├── tests/
 │   └── test_core.py          # Unit tests covering circuit fidelity, attacks, auth, and store
 ├── output/
@@ -179,7 +247,7 @@ Q-PRAMAAN/
 
 ### 5.1 Core Verification Suite (Unit Tests)
 
-All 8 automated tests validate the core quantum, cryptographic, and operational assertions:
+All 9 automated tests validate the core quantum, cryptographic, and operational assertions:
 
 ```powershell
 python -m unittest discover -s tests -v
@@ -187,6 +255,7 @@ python -m unittest discover -s tests -v
 
 ```
 test_equal_average_channel_needs_conditional_checks ... ok
+test_interactive_qubit_frame_physics_and_state_elimination ok
 test_missing_data_never_passes_as_normal ............ ok
 test_one_time_authentication_rejects_tamper_and_reuse ok
 test_planner_refuses_unsupported_noise_model ......... ok
@@ -196,7 +265,7 @@ test_targeted_channel_affects_signature_delivery ..... ok
 test_teleportation_all_pauli_eigenstates_and_outcomes  ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 0.192s
+Ran 9 tests in 0.223s
 
 OK
 ```
@@ -302,10 +371,11 @@ python -m venv .venv
 Once running, navigate to **`http://127.0.0.1:8765`** in your browser.
 
 ### Dashboard Views
-* **Laboratory**: Select from 13 attack and channel scenarios, inspect the 4 decoupled verdicts, and execute simulated releases.
-* **Evidence**: View visual diagnostic distributions, individual branch error rates, and download audit JSON receipts.
+* **Laboratory**: Features a live **Side-by-Side Dual-Pipeline Comparator** (Conventional Pooled QBER vs. Q-PRAMAAN 20-Scope Assurance), 13 attack scenarios, and decoupled decision inspection.
+* **Physics Trace**: Features an **Active Run Frame Scrubber (24 Bell Pairs)** with 6-stage quantum circuit breakdown and an interactive **Single-Shot Quantum Physics Sandbox** with live Born rule sampling.
+* **Evidence**: View visual diagnostic distributions, individual branch error rates across all 20 scopes, and download audit JSON receipts.
 * **Resource Planner**: Interactively calculate required Bell pairs and Classical bits across target security parameters ($10^{-3}$ to $10^{-9}$).
-* **Evaluation**: Compare pooled vs. conditional detection rates with real-time benchmark results.
+* **Evaluation**: Compare pooled vs. conditional detection rates with real-time benchmark results across 20,000 trials per scenario.
 
 ---
 
